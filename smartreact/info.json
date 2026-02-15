@@ -1,0 +1,15 @@
+{
+    "NAME": "SelectiveReact",
+    "AUTHOR": "zWolfrost",
+    "SHORT": "Create automatic reactions when trigger words are typed in chat",
+    "DESCRIPTION": "Create automatic reactions when trigger words are typed in chat.\n\nDependencies: None",
+    "INSTALL_MSG": "Thanks for installing SelectiveReact.",
+    "REQUIREMENTS": [],
+    "TAGS": [
+        "reaction",
+        "auto"
+    ],
+    "DISABLED": false,
+    "min_bot_version": "3.5.0",
+    "end_user_data_statement": "This doesn't store any user data."
+}
