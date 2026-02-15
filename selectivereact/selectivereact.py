@@ -1,3 +1,4 @@
+from email.mime import message
 import discord
 import re
 from redbot.core import Config, commands, checks
@@ -162,16 +163,22 @@ class SelectiveReact(commands.Cog):
 
         for emoji in reacts:
             for word in reacts[emoji]:
-                if self.get_pattern(word).search(message.content):
+                if word == "*":
                     emoji_obj = self.fix_custom_emoji(emoji)
-                    if not emoji_obj:
-                        await self.clean_dead_emojis(message.guild)
-                        return
-                    try:
-                        await message.add_reaction(emoji_obj)
-                        return
-                    except discord.errors.Forbidden:
-                        return
+                else:
+                    if not self.get_pattern(word).search(message.content):
+                        continue
+                    emoji_obj = self.fix_custom_emoji(emoji)
+
+                if not emoji_obj:
+                    await self.clean_dead_emojis(message.guild)
+                    return
+
+                try:
+                    await message.add_reaction(emoji_obj)
+                    return
+                except discord.errors.Forbidden:
+                    return
 
     async def red_delete_data_for_user(
         self,
